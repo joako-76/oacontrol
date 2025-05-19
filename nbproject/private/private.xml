@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/entidades/Localizacion.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/entidades/Persona.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/entidades/Seccion.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/servicios/ServicioLocalizacion.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/servicios/ServicioPersona.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/servicios/ServicioSeccion.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/servicios/ValidadorDeCampos.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/persistencia/ConexionBD.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/MenuPrincipal.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/DAO/AplicadorAsignado.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/DAO/AplicadorDao.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/entidades/VeedorAsignado.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/DAO/VeedorDAO.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/entidades/Asignacion.java</file>
+            <file>file:/home/aguirres/Documentos/oacontrol/src/control/DAO/AsignacionDAO.java</file>
+        </group>
+    </open-files>
+</project-private>

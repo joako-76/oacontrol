@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="oacontrol" default="default" basedir=".">
+    <description>Builds, tests, and runs the project oacontrol.</description>
+    <import file="nbproject/build-impl.xml"/>
+    
+    <!-- Define the classpath where the jars and class files will be stored -->
+    <path id="classpath">
+        <!-- Add the lib directory to the classpath -->
+        <fileset dir="lib">
+            <include name="mariadb-java-client-3.5.3.jar"/>
+        </fileset>
+        <!-- Add the build/classes directory to the classpath -->
+        <pathelement location="${build.classes.dir}"/>
+    </path>
+
+    <!-- Target to compile the Java files -->
+    <target name="compile">
+        <mkdir dir="${build.classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" classpathref="classpath"/>
+    </target>
+
+    <!-- Target to run the project -->
+    <target name="run" depends="compile">
+        <java classname="control.principal" classpathref="classpath"/>
+    </target>
+
+    <!-- Default target to compile and run -->
+    <target name="default" depends="run"/>
+</project>
+
