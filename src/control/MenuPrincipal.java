@@ -24,7 +24,7 @@ public class MenuPrincipal {
 
         try {
             // Configuración de la conexión a la base de datos
-            String url = "jdbc:mysql://localhost:3306/aprender2025";
+            String url = "jdbc:mariadb://localhost:3306/aprender2025";
             String user = "root"; // Reemplaza con tu usuario
             String password = "ptamariadb"; // Reemplaza con tu contraseña
 

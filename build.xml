@@ -23,14 +23,19 @@
         <javac srcdir="${src.dir}" destdir="${build.classes.dir}" classpathref="classpath"/>
     </target>
 
-    <!-- EJECUTAR -->
-    <target name="run" depends="compile">
-        <java classname="control.MenuPrincipal" fork="true">
-            <classpath>
-                <path refid="classpath"/>
-            </classpath>
-        </java>
-    </target>
+
+   <!-- EJECUTAR -->
+<target name="run" depends="compile">
+    <java classname="control.MenuPrincipal" fork="true" failonerror="true">
+        <classpath>
+            <pathelement location="${build.classes.dir}"/>
+            <fileset dir="lib">
+                <include name="mariadb-java-client-3.5.3.jar"/>
+            </fileset>
+        </classpath>
+    </java>
+</target>
+
 
     <!-- OBJETIVO POR DEFECTO -->
     <target name="default" depends="run"/>
