@@ -1,0 +1,22 @@
+# Ignorar archivos compilados
+*.class
+
+# Ignorar carpetas de compilación (NetBeans)
+build/
+dist/
+
+# Ignorar carpetas de configuración privada de NetBeans
+nbproject/private/
+
+# Archivos temporales del sistema
+*.log
+*.tmp
+*.bak
+*~ 
+.DS_Store
+Thumbs.db
+
+# Evitar conflictos de NetBeans (generados automáticamente, se pueden regenerar)
+nbproject/genfiles.properties
+nbproject/build-impl.xml
+
