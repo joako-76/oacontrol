@@ -6,14 +6,14 @@
 package control;
 
 import control.DAO.PersonaDAO;
-//import control.DAO.LocalizacionDAO;
-//import control.DAO.SeccionDAO;
-import control.entidades.Persona;
+
+import control.DAO.LocalizacionDAO;
+import control.DAO.PersonaDAO;
 import control.entidades.Localizacion;
-import control.entidades.Seccion;
-import control.persistencia.ConexionBD;
+import control.entidades.Persona;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -21,88 +21,109 @@ import java.util.Scanner;
 public class MenuPrincipal {
 
     public static void main(String[] args) {
-        try (Connection conexion = ConexionBD.obtenerConexion()) {
-            PersonaDAO personaDAO = new PersonaDAO(conexion);
-            LocalizacionDAO localizacionDAO = new LocalizacionDAO(conexion);
-            SeccionDAO seccionDAO = new SeccionDAO(conexion);
+        Scanner scanner = new Scanner(System.in);
+        Connection conn = null;
 
-            Scanner scanner = new Scanner(System.in);
+        try {
+            // Configuración de la conexión a la base de datos
+            String url = "jdbc:mysql://localhost:3306/aprender2025";
+            String user = "tu_usuario"; // Reemplaza con tu usuario
+            String password = "tu_contraseña"; // Reemplaza con tu contraseña
+
+            conn = DriverManager.getConnection(url, user, password);
+            LocalizacionDAO localizacionDAO = new LocalizacionDAO(conn);
+            PersonaDAO personaDAO = new PersonaDAO(conn);
+
             int opcion;
-
             do {
-                System.out.println("\n=== MENÚ PRINCIPAL ===");
-                System.out.println("1. Listar todas las personas");
-                System.out.println("2. Buscar persona por CUIL");
-                System.out.println("3. Listar todas las localizaciones");
-                System.out.println("4. Buscar localización por CUE Anexo");
-                System.out.println("5. Listar todas las secciones");
-                System.out.println("6. Buscar secciones por CUE Anexo");
-                System.out.println("0. Salir");
+                System.out.println("\n--- Menú Principal ---");
+                System.out.println("1. Buscar Localización por cueAnexo");
+                System.out.println("2. Listar todas las Localizaciones");
+                System.out.println("3. Buscar Persona por CUIL");
+                System.out.println("4. Listar todas las Personas");
+                System.out.println("5. Salir");
                 System.out.print("Seleccione una opción: ");
                 opcion = scanner.nextInt();
-                scanner.nextLine(); // Limpiar buffer
+                scanner.nextLine(); // Limpiar el buffer
 
                 switch (opcion) {
                     case 1:
-                        List<Persona> personas = personaDAO.listarTodas();
-                        for (Persona p : personas) {
-                            System.out.println(p);
+                        System.out.print("Ingrese el cueAnexo: ");
+                        String cueAnexo = scanner.nextLine();
+                        Localizacion loc = localizacionDAO.buscarPorCueAnexo(cueAnexo);
+                        if (loc != null) {
+                            mostrarLocalizacion(loc);
+                        } else {
+                            System.out.println("No se encontró una Localización con ese cueAnexo.");
                         }
                         break;
                     case 2:
-                        System.out.print("Ingrese el CUIL de la persona: ");
-                        String cuil = scanner.nextLine();
-                        Persona persona = personaDAO.buscarPorCuil(cuil);
-                        if (persona != null) {
-                            System.out.println(persona);
-                        } else {
-                            System.out.println("Persona no encontrada.");
+                        List<Localizacion> listaLoc = localizacionDAO.listarTodas();
+                        for (Localizacion l : listaLoc) {
+                            mostrarLocalizacion(l);
+                            System.out.println("------------------------------");
                         }
                         break;
                     case 3:
-                        List<Localizacion> localizaciones = localizacionDAO.listarTodas();
-                        for (Localizacion l : localizaciones) {
-                            System.out.println(l);
+                        System.out.print("Ingrese el CUIL: ");
+                        String cuil = scanner.nextLine();
+                        Persona persona = personaDAO.buscarPorCuil(cuil);
+                        if (persona != null) {
+                            mostrarPersona(persona);
+                        } else {
+                            System.out.println("No se encontró una Persona con ese CUIL.");
                         }
                         break;
                     case 4:
-                        System.out.print("Ingrese el CUE Anexo de la localización: ");
-                        String cueAnexo = scanner.nextLine();
-                        Localizacion localizacion = localizacionDAO.buscarPorCueAnexo(cueAnexo);
-                        if (localizacion != null) {
-                            System.out.println(localizacion);
-                        } else {
-                            System.out.println("Localización no encontrada.");
+                        List<Persona> listaPersonas = personaDAO.listarTodas();
+                        for (Persona p : listaPersonas) {
+                            mostrarPersona(p);
+                            System.out.println("------------------------------");
                         }
                         break;
                     case 5:
-                        List<Seccion> secciones = seccionDAO.listarTodas();
-                        for (Seccion s : secciones) {
-                            System.out.println(s);
-                        }
-                        break;
-                    case 6:
-                        System.out.print("Ingrese el CUE Anexo para buscar secciones: ");
-                        String cueAnexoSeccion = scanner.nextLine();
-                        List<Seccion> seccionesPorCue = seccionDAO.obtenerSeccionesPorLocalizacion(cueAnexoSeccion);
-                        if (!seccionesPorCue.isEmpty()) {
-                            for (Seccion s : seccionesPorCue) {
-                                System.out.println(s);
-                            }
-                        } else {
-                            System.out.println("No se encontraron secciones para ese CUE Anexo.");
-                        }
-                        break;
-                    case 0:
-                        System.out.println("Saliendo del programa.");
+                        System.out.println("Saliendo del programa...");
                         break;
                     default:
-                        System.out.println("Opción inválida. Intente nuevamente.");
+                        System.out.println("Opción no válida. Intente nuevamente.");
                 }
-            } while (opcion != 0);
+
+            } while (opcion != 5);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error al conectar con la base de datos: " + e.getMessage());
+        } finally {
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException ex) {
+                System.err.println("Error al cerrar la conexión: " + ex.getMessage());
+            }
+            scanner.close();
         }
+    }
+
+    private static void mostrarLocalizacion(Localizacion loc) {
+        System.out.println("cueAnexo: " + loc.getCueAnexo());
+        System.out.println("Nombre: " + loc.getNombre());
+        System.out.println("Sector: " + loc.getSector());
+        System.out.println("Dependencia: " + loc.getDependencia());
+        System.out.println("Modalidad Oferta: " + loc.getModalidadOferta());
+        System.out.println("Dirección: " + loc.getDireccion());
+        System.out.println("Localidad: " + loc.getLocalidad());
+        System.out.println("Departamento: " + loc.getDepartamento());
+        System.out.println("Evalúa: " + loc.getEvalua());
+    }
+
+    private static void mostrarPersona(Persona persona) {
+        System.out.println("CUIL: " + persona.getCuil());
+        System.out.println("Nombre: " + persona.getNombre());
+        System.out.println("Apellido: " + persona.getApellido());
+        System.out.println("Cargo: " + persona.getCargo());
+        System.out.println("CBU: " + persona.getCbu());
+        System.out.println("Lugar donde se desempeña: " + persona.getLugarDondeSeDesempena());
+        System.out.println("Teléfono: " + persona.getTelefono());
+        System.out.println("Correo: " + persona.getCorreo());
+        System.out.println("Rol: " + persona.getRol());
+        System.out.println("Lugar donde aplica: " + persona.getLugarDondeAplica());
     }
 }
