@@ -5,8 +5,6 @@
 
 package control;
 
-import control.DAO.PersonaDAO;
-
 import control.DAO.LocalizacionDAO;
 import control.DAO.PersonaDAO;
 import control.entidades.Localizacion;
@@ -27,8 +25,8 @@ public class MenuPrincipal {
         try {
             // Configuración de la conexión a la base de datos
             String url = "jdbc:mysql://localhost:3306/aprender2025";
-            String user = "tu_usuario"; // Reemplaza con tu usuario
-            String password = "tu_contraseña"; // Reemplaza con tu contraseña
+            String user = "root"; // Reemplaza con tu usuario
+            String password = "ptamariadb"; // Reemplaza con tu contraseña
 
             conn = DriverManager.getConnection(url, user, password);
             LocalizacionDAO localizacionDAO = new LocalizacionDAO(conn);
