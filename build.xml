@@ -25,7 +25,7 @@
 
     <!-- EJECUTAR -->
     <target name="run" depends="compile">
-        <java classname="control.principal" classpathref="classpath"/>
+        <java classname="control.MenuPrincipal" classpathref="classpath"/>
     </target>
 
     <!-- OBJETIVO POR DEFECTO -->
