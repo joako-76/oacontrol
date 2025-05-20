@@ -25,10 +25,15 @@
 
     <!-- EJECUTAR -->
     <target name="run" depends="compile">
-        <java classname="control.MenuPrincipal" classpathref="classpath"/>
+        <java classname="control.MenuPrincipal" fork="true">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </java>
     </target>
 
     <!-- OBJETIVO POR DEFECTO -->
     <target name="default" depends="run"/>
 </project>
+
 
