@@ -9,7 +9,7 @@ public class AplicadorAsignado extends Persona {
     private String tipoAplicador;
     private String seccion;
     private String turno;
-    private String tipoSeccion;
+    private String tipo;
     private String cueAnexo;
     private String nombreEscuela;
     private String dependencia;
@@ -24,7 +24,7 @@ public class AplicadorAsignado extends Persona {
     public AplicadorAsignado(String nombre, String apellido, String cuil, String cargo, String cbu,
                              String lugarDondeSeDesempena, String telefono, String correo, String rol,
                              String lugarDondeAplica,
-                             String tipoAplicador, String seccion, String turno, String tipoSeccion,
+                             String tipoAplicador, String seccion, String turno, String tipo,
                              String cueAnexo, String nombreEscuela, String dependencia,
                              String sector, String departamento) {
 
@@ -44,7 +44,7 @@ public class AplicadorAsignado extends Persona {
         this.tipoAplicador = tipoAplicador;
         this.seccion = seccion;
         this.turno = turno;
-        this.tipoSeccion = tipoSeccion;
+        this.tipo = tipo;
         this.cueAnexo = cueAnexo;
         this.nombreEscuela = nombreEscuela;
         this.dependencia = dependencia;
@@ -78,11 +78,11 @@ public class AplicadorAsignado extends Persona {
     }
 
     public String getTipoSeccion() {
-        return tipoSeccion;
+        return tipo;
     }
 
     public void setTipoSeccion(String tipoSeccion) {
-        this.tipoSeccion = tipoSeccion;
+        this.tipo = tipoSeccion;
     }
 
     public String getCueAnexo() {

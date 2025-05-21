@@ -7,9 +7,13 @@ package control.persistencia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import control.entidades.AplicadorAsignado;
 
 public class AplicadorDAO {
+
+    private static final Logger LOGGER = Logger.getLogger(AplicadorDAO.class.getName());
 
     public List<AplicadorAsignado> obtenerAplicadores() {
         List<AplicadorAsignado> lista = new ArrayList<>();
@@ -37,7 +41,7 @@ public class AplicadorDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error al obtener aplicadores desde la vista.", e);
         }
 
         return lista;
