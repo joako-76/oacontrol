@@ -2,7 +2,7 @@
  *
  * @author aguirres
  */
-package control.DAO;
+package control.persistencia;
 
 import control.entidades.Localizacion;
 import control.entidades.Seccion;

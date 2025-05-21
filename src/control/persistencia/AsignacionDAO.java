@@ -1,7 +1,7 @@
 /**
  * @author aguirres
  */
-package control.DAO;
+package control.persistencia;
 
 import control.entidades.Asignacion;
 

@@ -2,7 +2,7 @@
  *
  * @author aguirres
  */
-package control.DAO;
+package control.persistencia;
 
 public class AplicadorAsignado {
     private String cuil;

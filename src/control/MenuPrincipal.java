@@ -5,8 +5,8 @@
 
 package control;
 
-import control.DAO.LocalizacionDAO;
-import control.DAO.PersonaDAO;
+import control.persistencia.LocalizacionDAO;
+import control.persistencia.PersonaDAO;
 import control.entidades.Localizacion;
 import control.entidades.Persona;
 

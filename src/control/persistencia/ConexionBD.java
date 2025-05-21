@@ -2,7 +2,7 @@
  *
  * @author aguirres
  */
-package control.DAO;
+package control.persistencia;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
