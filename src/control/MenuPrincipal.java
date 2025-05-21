@@ -1,7 +1,7 @@
 /**
  *
  * @author aguirres
- */
+
 
 package control;
 
@@ -123,5 +123,85 @@ public class MenuPrincipal {
         System.out.println("Correo: " + persona.getCorreo());
         System.out.println("Rol: " + persona.getRol());
         System.out.println("Lugar donde aplica: " + persona.getLugarDondeAplica());
+    }
+}
+ */
+
+package control;
+
+import control.persistencia.AplicadorDAO;
+import control.entidades.AplicadorAsignado;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Scanner;
+
+public class MenuPrincipal {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Connection conn = null;
+
+        try {
+            String url = "jdbc:mariadb://localhost:3306/aprender2025";
+            String user = "root";          // Ajusta tu usuario
+            String password = "ptamariadb"; // Ajusta tu contraseña
+
+            conn = DriverManager.getConnection(url, user, password);
+            AplicadorDAO aplicadorDAO = new AplicadorDAO(conn);
+
+            int opcion;
+            do {
+                System.out.println("\n--- Menú Principal ---");
+                System.out.println("1. Listar aplicadores");
+                System.out.println("2. Salir");
+                System.out.print("Seleccione una opción: ");
+                opcion = scanner.nextInt();
+                scanner.nextLine(); // Limpiar buffer
+
+                switch (opcion) {
+                    case 1:
+                        List<AplicadorAsignado> lista = aplicadorDAO.obtenerAplicadores();
+                        for (AplicadorAsignado a : lista) {
+                            mostrarAplicador(a);
+                            System.out.println("------------------------------");
+                        }
+                        break;
+                    case 2:
+                        System.out.println("Saliendo...");
+                        break;
+                    default:
+                        System.out.println("Opción no válida. Intente nuevamente.");
+                }
+
+            } while (opcion != 2);
+
+        } catch (SQLException e) {
+            System.err.println("Error al conectar con la base de datos: " + e.getMessage());
+        } finally {
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException ex) {
+                System.err.println("Error al cerrar la conexión: " + ex.getMessage());
+            }
+            scanner.close();
+        }
+    }
+
+    private static void mostrarAplicador(AplicadorAsignado a) {
+        System.out.println("CUIL: " + a.getCuil());
+        System.out.println("Nombre: " + a.getNombre());
+        System.out.println("Apellido: " + a.getApellido());
+        System.out.println("Tipo Aplicador: " + a.getTipoAplicador());
+        System.out.println("Sección: " + a.getSeccion());
+        System.out.println("Turno: " + a.getTurno());
+        System.out.println("Tipo Sección: " + a.getTipoSeccion());
+        System.out.println("Cue Anexo: " + a.getCueAnexo());
+        System.out.println("Nombre Escuela: " + a.getNombreEscuela());
+        System.out.println("Dependencia: " + a.getDependencia());
+        System.out.println("Sector: " + a.getSector());
+        System.out.println("Departamento: " + a.getDepartamento());
     }
 }

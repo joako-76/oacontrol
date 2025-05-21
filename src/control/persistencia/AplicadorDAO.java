@@ -14,13 +14,18 @@ import control.entidades.AplicadorAsignado;
 public class AplicadorDAO {
 
     private static final Logger LOGGER = Logger.getLogger(AplicadorDAO.class.getName());
+    private Connection conn;  // conexión inyectada desde afuera
+
+    // Constructor que recibe la conexión
+    public AplicadorDAO(Connection conn) {
+        this.conn = conn;
+    }
 
     public List<AplicadorAsignado> obtenerAplicadores() {
         List<AplicadorAsignado> lista = new ArrayList<>();
         String sql = "SELECT * FROM vista_aplicador_seccion";
 
-        try (Connection conn = ConexionBD.obtenerConexion();
-             PreparedStatement stmt = conn.prepareStatement(sql);
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
