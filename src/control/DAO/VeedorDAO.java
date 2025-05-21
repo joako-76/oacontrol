@@ -4,7 +4,6 @@
  */
 package control.DAO;
 
-import control.persistencia.ConexionBD;
 import control.entidades.VeedorAsignado;
 import java.sql.*;
 import java.util.ArrayList;

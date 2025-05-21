@@ -4,7 +4,6 @@
 package control.DAO;
 
 import control.entidades.Asignacion;
-import control.persistencia.ConexionBD;
 
 import java.sql.*;
 import java.time.LocalDate;

@@ -18,7 +18,7 @@ public class PersonaDAO {
 
     public List<Persona> listarTodas() throws SQLException {
         List<Persona> personas = new ArrayList<>();
-        String sql = "SELECT * FROM persona";
+        String sql = "SELECT * FROM Persona";
         try (Statement stmt = conexion.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -38,7 +38,7 @@ public class PersonaDAO {
 
     public Persona buscarPorCuil(String cuil) throws SQLException {
         Persona persona = null;
-        String sql = "SELECT * FROM persona WHERE cuil = ?";
+        String sql = "SELECT * FROM Persona WHERE cuil = ?";
         try (PreparedStatement stmt = conexion.prepareStatement(sql)) {
             stmt.setString(1, cuil);
             try (ResultSet rs = stmt.executeQuery()) {
