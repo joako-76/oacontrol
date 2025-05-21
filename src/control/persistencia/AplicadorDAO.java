@@ -7,7 +7,7 @@ package control.persistencia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import control.entidades.AplicadorAsignado;
 
 public class AplicadorDAO {
 

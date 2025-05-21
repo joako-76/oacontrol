@@ -2,7 +2,7 @@
  *
  * @author aguirres
  */
-package control.persistencia;
+package control.entidades;
 
 public class AplicadorAsignado {
     private String cuil;
