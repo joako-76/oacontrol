@@ -129,8 +129,11 @@ public class MenuPrincipal {
 
 package control;
 
+
 import control.persistencia.AplicadorDAO;
+import control.persistencia.PersonaDetalleAsignacionDAO;
 import control.entidades.AplicadorAsignado;
+import control.entidades.PersonaDetalleAsignacion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -151,12 +154,15 @@ public class MenuPrincipal {
 
             conn = DriverManager.getConnection(url, user, password);
             AplicadorDAO aplicadorDAO = new AplicadorDAO(conn);
+            PersonaDetalleAsignacionDAO personaDAO = new PersonaDetalleAsignacionDAO();
 
             int opcion;
             do {
                 System.out.println("\n--- Menú Principal ---");
                 System.out.println("1. Listar aplicadores");
                 System.out.println("2. Salir");
+                System.out.println("3. Listar personas detalle asignacion");
+                System.out.println("4. Buscar persona detalle asignacion por CUIL");
                 System.out.print("Seleccione una opción: ");
                 opcion = scanner.nextInt();
                 scanner.nextLine(); // Limpiar buffer
@@ -171,6 +177,23 @@ public class MenuPrincipal {
                         break;
                     case 2:
                         System.out.println("Saliendo...");
+                        break;
+                    case 3:
+                        List<PersonaDetalleAsignacion> personas = personaDAO.obtenerTodas();
+                        for (PersonaDetalleAsignacion p : personas) {
+                            mostrarPersonaDetalleAsignacion(p);
+                            System.out.println("------------------------------");
+                        }
+                        break;
+                    case 4:
+                        System.out.print("Ingrese CUIL para buscar: ");
+                        String cuil = scanner.nextLine();
+                        PersonaDetalleAsignacion persona = personaDAO.obtenerPorCUIL(cuil);
+                        if (persona != null) {
+                            mostrarPersonaDetalleAsignacion(persona);
+                        } else {
+                            System.out.println("No se encontró persona con CUIL: " + cuil);
+                        }
                         break;
                     default:
                         System.out.println("Opción no válida. Intente nuevamente.");
@@ -203,5 +226,22 @@ public class MenuPrincipal {
         System.out.println("Dependencia: " + a.getDependencia());
         System.out.println("Sector: " + a.getSector());
         System.out.println("Departamento: " + a.getDepartamento());
+    }
+
+    private static void mostrarPersonaDetalleAsignacion(PersonaDetalleAsignacion p) {
+        System.out.println("CUIL: " + p.getCuil());
+        System.out.println("Nombre: " + p.getNombre());
+        System.out.println("Apellido: " + p.getApellido());
+        System.out.println("Rol Declarado: " + p.getRolAsignado());
+        System.out.println("Rol Asignado: " + p.getRolAsignado());
+        System.out.println("Tipo Aplicador: " + p.getTipoAplicador());
+        System.out.println("Sección: " + p.getSeccion());
+        System.out.println("Turno: " + p.getTurno());
+        System.out.println("Tipo: " + p.getTipo());
+        System.out.println("CUE Anexo: " + p.getCueAnexo());
+        System.out.println("Nombre Escuela: " + p.getNombreEscuela());
+        System.out.println("Departamento: " + p.getDepartamento());
+        System.out.println("Sector: " + p.getSector());
+        System.out.println("Dependencia: " + p.getDependencia());
     }
 }
