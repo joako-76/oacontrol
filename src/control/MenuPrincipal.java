@@ -129,11 +129,12 @@ public class MenuPrincipal {
 
 package control;
 
-
 import control.persistencia.AplicadorDAO;
 import control.persistencia.PersonaDetalleAsignacionDAO;
+import control.persistencia.VeedorDAO;
 import control.entidades.AplicadorAsignado;
 import control.entidades.PersonaDetalleAsignacion;
+import control.entidades.VeedorAsignado;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -155,6 +156,7 @@ public class MenuPrincipal {
             conn = DriverManager.getConnection(url, user, password);
             AplicadorDAO aplicadorDAO = new AplicadorDAO(conn);
             PersonaDetalleAsignacionDAO personaDAO = new PersonaDetalleAsignacionDAO();
+            VeedorDAO veedorDAO = new VeedorDAO(conn);
 
             int opcion;
             do {
@@ -163,6 +165,7 @@ public class MenuPrincipal {
                 System.out.println("2. Salir");
                 System.out.println("3. Listar personas detalle asignacion");
                 System.out.println("4. Buscar persona detalle asignacion por CUIL");
+                System.out.println("5. Listar veedores asignados");
                 System.out.print("Seleccione una opción: ");
                 opcion = scanner.nextInt();
                 scanner.nextLine(); // Limpiar buffer
@@ -193,6 +196,13 @@ public class MenuPrincipal {
                             mostrarPersonaDetalleAsignacion(persona);
                         } else {
                             System.out.println("No se encontró persona con CUIL: " + cuil);
+                        }
+                        break;
+                    case 5:
+                        List<VeedorAsignado> veedores = veedorDAO.obtenerVeedores();
+                        for (VeedorAsignado v : veedores) {
+                            mostrarVeedorAsignado(v);
+                            System.out.println("------------------------------");
                         }
                         break;
                     default:
@@ -244,4 +254,16 @@ public class MenuPrincipal {
         System.out.println("Sector: " + p.getSector());
         System.out.println("Dependencia: " + p.getDependencia());
     }
+
+    private static void mostrarVeedorAsignado(VeedorAsignado v) {
+        System.out.println("CUIL: " + v.getCuil());
+        System.out.println("Nombre: " + v.getNombre());
+        System.out.println("Apellido: " + v.getApellido());
+        System.out.println("Cue Anexo: " + v.getCueAnexo());
+        System.out.println("Nombre Escuela: " + v.getNombreEscuela());
+        System.out.println("Dependencia: " + v.getDependencia());
+        System.out.println("Sector: " + v.getSector());
+        System.out.println("Departamento: " + v.getDepartamento());
+    }
 }
+

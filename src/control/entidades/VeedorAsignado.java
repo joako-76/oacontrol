@@ -14,6 +14,24 @@ public class VeedorAsignado {
     private String sector;
     private String departamento;
 
+    // Constructor vacío
+    public VeedorAsignado() {
+    }
+
+    // Constructor completo
+    public VeedorAsignado(String cuil, String nombre, String apellido,
+                          String cueAnexo, String nombreEscuela,
+                          String dependencia, String sector, String departamento) {
+        this.cuil = cuil;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cueAnexo = cueAnexo;
+        this.nombreEscuela = nombreEscuela;
+        this.dependencia = dependencia;
+        this.sector = sector;
+        this.departamento = departamento;
+    }
+
     // Getters y Setters
     public String getCuil() { return cuil; }
     public void setCuil(String cuil) { this.cuil = cuil; }
@@ -38,4 +56,19 @@ public class VeedorAsignado {
 
     public String getDepartamento() { return departamento; }
     public void setDepartamento(String departamento) { this.departamento = departamento; }
+
+    // toString
+    @Override
+    public String toString() {
+        return "VeedorAsignado{" +
+                "cuil='" + cuil + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", cueAnexo='" + cueAnexo + '\'' +
+                ", nombreEscuela='" + nombreEscuela + '\'' +
+                ", dependencia='" + dependencia + '\'' +
+                ", sector='" + sector + '\'' +
+                ", departamento='" + departamento + '\'' +
+                '}';
+    }
 }

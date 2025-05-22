@@ -5,18 +5,27 @@
 package control.persistencia;
 
 import control.entidades.VeedorAsignado;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class VeedorDAO {
 
+    private static final Logger logger = Logger.getLogger(VeedorDAO.class.getName());
+    private Connection conn;
+
+    public VeedorDAO(Connection conn) {
+        this.conn = conn;
+    }
+
     public List<VeedorAsignado> obtenerVeedores() {
         List<VeedorAsignado> lista = new ArrayList<>();
-        String sql = "SELECT * FROM vista_veedor_escuela"; // Debemos crear esta vista en la BD
+        String sql = "SELECT * FROM vista_veedor_escuela"; 
 
-        try (Connection conn = ConexionBD.obtenerConexion();
-             PreparedStatement stmt = conn.prepareStatement(sql);
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
@@ -33,7 +42,7 @@ public class VeedorDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Error al obtener veedores desde la base de datos", e);
         }
 
         return lista;
