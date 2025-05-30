@@ -21,6 +21,7 @@ public class PersonaDetalleAsignacionDAO {
 
     private Connection conexion;
 
+    // Constructor por defecto que obtiene la conexión internamente
     public PersonaDetalleAsignacionDAO() {
         try {
             conexion = ConexionBD.obtenerConexion();
@@ -28,6 +29,11 @@ public class PersonaDetalleAsignacionDAO {
             logger.log(Level.SEVERE, "No se pudo conectar a la base de datos.", e);
             throw new RuntimeException("No se pudo conectar a la base de datos.", e);
         }
+    }
+
+    // Nuevo constructor que recibe la conexión por parámetro
+    public PersonaDetalleAsignacionDAO(Connection conexion) {
+        this.conexion = conexion;
     }
 
     public List<PersonaDetalleAsignacion> obtenerTodas() {
