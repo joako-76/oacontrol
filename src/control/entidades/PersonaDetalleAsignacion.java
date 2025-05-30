@@ -6,48 +6,98 @@ package control.entidades;
 
 public class PersonaDetalleAsignacion extends Persona {
 
-    private String rolAsignado;
+    private String cbu;
+    private String contacto;
+    private String lugarDondeSeDesempena;
+    private String nombreDondeSeDesempena;
+    private String lugarDondeAplica;
+    private String nombreDondeAplica;
+    private String rol;
     private String tipoAplicador;
-    private String seccion;
-    private String turno;
-    private String tipo;
-    private String cueAnexo;
-    private String nombreEscuela;
-    private String departamento;
-    private String sector;
-    private String dependencia;
 
-    public PersonaDetalleAsignacion(String cuil, String nombre, String apellido,
-                                    String rolDeclarado, String rolAsignado,
-                                    String tipoAplicador, String seccion, String turno,
-                                    String tipo, String cueAnexo, String nombreEscuela,
-                                    String departamento, String sector, String dependencia) {
-
+    public PersonaDetalleAsignacion(
+            String cuil,
+            String cbu,
+            String nombre,
+            String apellido,
+            String contacto,
+            String lugarDondeSeDesempena,
+            String nombreDondeSeDesempena,
+            String lugarDondeAplica,
+            String nombreDondeAplica,
+            String rol,
+            String tipoAplicador
+    ) {
         setCuil(cuil);
         setNombre(nombre);
         setApellido(apellido);
-        setRol(rolDeclarado); // Este es el rol declarado
 
-        this.rolAsignado = rolAsignado;
+        this.cbu = cbu;
+        this.contacto = contacto;
+        this.lugarDondeSeDesempena = lugarDondeSeDesempena;
+        this.nombreDondeSeDesempena = nombreDondeSeDesempena;
+        this.lugarDondeAplica = lugarDondeAplica;
+        this.nombreDondeAplica = nombreDondeAplica;
+        this.rol = rol;
         this.tipoAplicador = tipoAplicador;
-        this.seccion = seccion;
-        this.turno = turno;
-        this.tipo = tipo;
-        this.cueAnexo = cueAnexo;
-        this.nombreEscuela = nombreEscuela;
-        this.departamento = departamento;
-        this.sector = sector;
-        this.dependencia = dependencia;
     }
 
-    // Getters y setters adicionales
+    // Getters y Setters
 
-    public String getRolAsignado() {
-        return rolAsignado;
+    public String getCbu() {
+        return cbu;
     }
 
-    public void setRolAsignado(String rolAsignado) {
-        this.rolAsignado = rolAsignado;
+    public void setCbu(String cbu) {
+        this.cbu = cbu;
+    }
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
+    }
+
+    public String getLugarDondeSeDesempena() {
+        return lugarDondeSeDesempena;
+    }
+
+    public void setLugarDondeSeDesempena(String lugarDondeSeDesempena) {
+        this.lugarDondeSeDesempena = lugarDondeSeDesempena;
+    }
+
+    public String getNombreDondeSeDesempena() {
+        return nombreDondeSeDesempena;
+    }
+
+    public void setNombreDondeSeDesempena(String nombreDondeSeDesempena) {
+        this.nombreDondeSeDesempena = nombreDondeSeDesempena;
+    }
+
+    public String getLugarDondeAplica() {
+        return lugarDondeAplica;
+    }
+
+    public void setLugarDondeAplica(String lugarDondeAplica) {
+        this.lugarDondeAplica = lugarDondeAplica;
+    }
+
+    public String getNombreDondeAplica() {
+        return nombreDondeAplica;
+    }
+
+    public void setNombreDondeAplica(String nombreDondeAplica) {
+        this.nombreDondeAplica = nombreDondeAplica;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public String getTipoAplicador() {
@@ -58,68 +108,21 @@ public class PersonaDetalleAsignacion extends Persona {
         this.tipoAplicador = tipoAplicador;
     }
 
-    public String getSeccion() {
-        return seccion;
-    }
-
-    public void setSeccion(String seccion) {
-        this.seccion = seccion;
-    }
-
-    public String getTurno() {
-        return turno;
-    }
-
-    public void setTurno(String turno) {
-        this.turno = turno;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getCueAnexo() {
-        return cueAnexo;
-    }
-
-    public void setCueAnexo(String cueAnexo) {
-        this.cueAnexo = cueAnexo;
-    }
-
-    public String getNombreEscuela() {
-        return nombreEscuela;
-    }
-
-    public void setNombreEscuela(String nombreEscuela) {
-        this.nombreEscuela = nombreEscuela;
-    }
-
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
-
-    public String getSector() {
-        return sector;
-    }
-
-    public void setSector(String sector) {
-        this.sector = sector;
-    }
-
-    public String getDependencia() {
-        return dependencia;
-    }
-
-    public void setDependencia(String dependencia) {
-        this.dependencia = dependencia;
+    @Override
+    public String toString() {
+        return "PersonaDetalleAsignacion{" +
+                "cuil='" + getCuil() + '\'' +
+                ", nombre='" + getNombre() + '\'' +
+                ", apellido='" + getApellido() + '\'' +
+                ", cbu='" + cbu + '\'' +
+                ", contacto='" + contacto + '\'' +
+                ", lugarDondeSeDesempena='" + lugarDondeSeDesempena + '\'' +
+                ", nombreDondeSeDesempena='" + nombreDondeSeDesempena + '\'' +
+                ", lugarDondeAplica='" + lugarDondeAplica + '\'' +
+                ", nombreDondeAplica='" + nombreDondeAplica + '\'' +
+                ", rol='" + rol + '\'' +
+                ", tipoAplicador='" + tipoAplicador + '\'' +
+                '}';
     }
 }
 

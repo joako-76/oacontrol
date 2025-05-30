@@ -3,6 +3,7 @@
  * @author aguirres
  */
 package control.persistencia;
+
 import control.entidades.PersonaDetalleAsignacion;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -38,19 +39,16 @@ public class PersonaDetalleAsignacionDAO {
             while (rs.next()) {
                 PersonaDetalleAsignacion p = new PersonaDetalleAsignacion(
                         rs.getString("cuil"),
+                        rs.getString("cbu"),
                         rs.getString("nombre"),
                         rs.getString("apellido"),
-                        rs.getString("rolDeclarado"),
-                        rs.getString("rolAsignado"),
-                        rs.getString("tipoAplicador"),
-                        rs.getString("seccion"),
-                        rs.getString("turno"),
-                        rs.getString("tipo"),
-                        rs.getString("cueAnexo"),
-                        rs.getString("nombreEscuela"),
-                        rs.getString("departamento"),
-                        rs.getString("sector"),
-                        rs.getString("dependencia")
+                        rs.getString("contacto"),
+                        rs.getString("lugarDondeSeDesempena"),
+                        rs.getString("nombreDondeSeDesempena"),
+                        rs.getString("lugarDondeAplica"),
+                        rs.getString("nombreDondeAplica"),
+                        rs.getString("rol"),
+                        rs.getString("tipoAplicador")
                 );
                 lista.add(p);
             }
@@ -71,19 +69,16 @@ public class PersonaDetalleAsignacionDAO {
                 if (rs.next()) {
                     persona = new PersonaDetalleAsignacion(
                             rs.getString("cuil"),
+                            rs.getString("cbu"),
                             rs.getString("nombre"),
                             rs.getString("apellido"),
-                            rs.getString("rolDeclarado"),
-                            rs.getString("rolAsignado"),
-                            rs.getString("tipoAplicador"),
-                            rs.getString("seccion"),
-                            rs.getString("turno"),
-                            rs.getString("tipo"),
-                            rs.getString("cueAnexo"),
-                            rs.getString("nombreEscuela"),
-                            rs.getString("departamento"),
-                            rs.getString("sector"),
-                            rs.getString("dependencia")
+                            rs.getString("contacto"),
+                            rs.getString("lugarDondeSeDesempena"),
+                            rs.getString("nombreDondeSeDesempena"),
+                            rs.getString("lugarDondeAplica"),
+                            rs.getString("nombreDondeAplica"),
+                            rs.getString("rol"),
+                            rs.getString("tipoAplicador")
                     );
                 }
             }
@@ -93,6 +88,4 @@ public class PersonaDetalleAsignacionDAO {
 
         return persona;
     }
-
 }
-
