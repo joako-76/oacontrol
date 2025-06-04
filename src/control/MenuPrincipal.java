@@ -3,9 +3,11 @@ package control;
 import control.persistencia.AplicadorDAO;
 import control.persistencia.PersonaDetalleAsignacionDAO;
 import control.persistencia.VeedorDAO;
+import control.persistencia.DatosLocalizacionDAO;
 import control.entidades.AplicadorAsignado;
 import control.entidades.PersonaDetalleAsignacion;
 import control.entidades.VeedorAsignado;
+import control.entidades.DatosLocalizacion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,6 +30,7 @@ public class MenuPrincipal {
             AplicadorDAO aplicadorDAO = new AplicadorDAO(conn);
             PersonaDetalleAsignacionDAO personaDAO = new PersonaDetalleAsignacionDAO(conn);
             VeedorDAO veedorDAO = new VeedorDAO(conn);
+            DatosLocalizacionDAO datosLocalizacionDAO = new DatosLocalizacionDAO(conn);
 
             int opcion;
             do {
@@ -37,6 +40,7 @@ public class MenuPrincipal {
                 System.out.println("3. Listar personas detalle asignacion");
                 System.out.println("4. Buscar persona detalle asignacion por CUIL");
                 System.out.println("5. Listar veedores asignados");
+                System.out.println("6. Buscar datos por localización (CUE Anexo)");
                 System.out.print("Seleccione una opción: ");
                 opcion = scanner.nextInt();
                 scanner.nextLine(); // Limpiar buffer
@@ -76,6 +80,32 @@ public class MenuPrincipal {
                             System.out.println("------------------------------");
                         }
                         break;
+                    case 6:
+    System.out.print("Ingrese el CUE Anexo para buscar: ");
+    String cueAnexo = scanner.nextLine();
+    List<DatosLocalizacion> datos = datosLocalizacionDAO.obtenerPorCue(cueAnexo);
+    if (datos.isEmpty()) {
+        System.out.println("No se encontraron asignaciones para el CUE Anexo: " + cueAnexo);
+    } else {
+        DatosLocalizacion primerDato = datos.get(0);
+        System.out.println("El CUE Anexo " + cueAnexo + " pertenece a la Escuela: " + primerDato.getLugarDondeAplica());
+        System.out.println("Detalles de asignaciones:");
+
+        for (DatosLocalizacion d : datos) {
+            System.out.println("------------------------------");
+            System.out.println("Nombre: " + d.getNombre());
+            System.out.println("Apellido: " + d.getApellido());
+            System.out.println("Rol: " + d.getRol());
+            System.out.println("Tipo Aplicador: " + d.getTipoAplicador());
+            System.out.println("Grado/Año: " + d.getGradoAnio());
+            System.out.println("Nombre Sección: " + d.getNombreSeccion());
+            System.out.println("Tipo Sección: " + d.getTipo());
+            System.out.println("Turno: " + d.getTurno());
+            System.out.println("Cantidad de Alumnos: " + d.getAlumnos());
+        }
+    }
+    break;
+
                     default:
                         System.out.println("Opción no válida. Intente nuevamente.");
                 }
@@ -132,5 +162,19 @@ public class MenuPrincipal {
         System.out.println("Dependencia: " + v.getDependencia());
         System.out.println("Sector: " + v.getSector());
         System.out.println("Departamento: " + v.getDepartamento());
+    }
+
+    private static void mostrarDatosLocalizacion(DatosLocalizacion d) {
+        System.out.println("Nombre: " + d.getNombre());
+        System.out.println("Apellido: " + d.getApellido());
+        System.out.println("Lugar Donde Aplica: " + d.getLugarDondeAplica());
+        System.out.println("Nombre Donde Aplica: " + d.getNombreDondeAplica());
+        System.out.println("Rol: " + d.getRol());
+        System.out.println("Tipo Aplicador: " + d.getTipoAplicador());
+        System.out.println("Grado/Año: " + d.getGradoAnio());
+        System.out.println("Nombre Sección: " + d.getNombreSeccion());
+        System.out.println("Tipo Sección: " + d.getTipo());
+        System.out.println("Turno: " + d.getTurno());
+        System.out.println("Cantidad de Alumnos: " + d.getAlumnos());
     }
 }
