@@ -5,6 +5,7 @@
 package control.persistencia;
 
 import control.entidades.PersonaDetalleAsignacion;
+import control.enums.remuneradoEnum;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,6 +50,7 @@ public class PersonaDetalleAsignacionDAO {
                         rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("contacto"),
+                        parseRemunerado(rs.getString("remunerado")),
                         rs.getString("lugarDondeSeDesempena"),
                         rs.getString("nombreDondeSeDesempena"),
                         rs.getString("lugarDondeAplica"),
@@ -79,6 +81,7 @@ public class PersonaDetalleAsignacionDAO {
                             rs.getString("nombre"),
                             rs.getString("apellido"),
                             rs.getString("contacto"),
+                            parseRemunerado(rs.getString("remunerado")),
                             rs.getString("lugarDondeSeDesempena"),
                             rs.getString("nombreDondeSeDesempena"),
                             rs.getString("lugarDondeAplica"),
@@ -94,4 +97,18 @@ public class PersonaDetalleAsignacionDAO {
 
         return persona;
     }
+
+    // Método auxiliar para convertir el String de remunerado a enum
+    private remuneradoEnum parseRemunerado(String valor) {
+    if (valor == null || valor.trim().isEmpty()) {
+        return remuneradoEnum.REVISAR;
+    }
+    try {
+        return remuneradoEnum.valueOf(valor.trim().toUpperCase());
+    } catch (IllegalArgumentException e) {
+        logger.log(Level.WARNING, "Valor inesperado en remunerado: {0}. Se asigna REVISAR por defecto.", valor);
+        return remuneradoEnum.REVISAR;
+    }
+}
+
 }

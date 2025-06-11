@@ -3,6 +3,7 @@
  * @author aguirres
  */
 package control.entidades;
+import control.enums.remuneradoEnum;
 
 public class AplicadorAsignado extends Persona {
 
@@ -16,31 +17,33 @@ public class AplicadorAsignado extends Persona {
     private String sector;
     private String departamento;
 
+    private String cbu;
+    private String telefono;
+    private String correo;
+    private remuneradoEnum remunerado;
+
     // Constructor vacío
     public AplicadorAsignado() {
     }
 
-    // Constructor completo
-    public AplicadorAsignado(String nombre, String apellido, String cuil, String cargo, String cbu,
-                             String lugarDondeSeDesempena, String telefono, String correo, String rol,
-                             String lugarDondeAplica,
-                             String tipoAplicador, String seccion, String turno, String tipo,
-                             String cueAnexo, String nombreEscuela, String dependencia,
-                             String sector, String departamento) {
+    // Constructor completo (desde vista)
+    public AplicadorAsignado(String cuil, String nombre, String apellido,
+                              String cbu, String telefono, String correo, remuneradoEnum remunerado,
+                              String tipoAplicador, String seccion, String turno, String tipo,
+                              String cueAnexo, String nombreEscuela, String dependencia,
+                              String sector, String departamento) {
 
         // Atributos heredados
+        setCuil(cuil);
         setNombre(nombre);
         setApellido(apellido);
-        setCuil(cuil);
-        setCargo(cargo);
-        setCbu(cbu);
-        setLugarDondeSeDesempena(lugarDondeSeDesempena);
-        setTelefono(telefono);
-        setCorreo(correo);
-        setRol(rol);
-        setLugarDondeAplica(lugarDondeAplica);
 
-        // Atributos propios
+        // Nuevos campos de la vista
+        this.cbu = cbu;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.remunerado = remunerado;
+
         this.tipoAplicador = tipoAplicador;
         this.seccion = seccion;
         this.turno = turno;
@@ -124,12 +127,58 @@ public class AplicadorAsignado extends Persona {
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
     }
-
-    @Override
-    public String toString() {
-        return super.toString() + " - Aplicador: " + tipoAplicador
-               + ", Sección: " + seccion + ", Turno: " + turno
-               + ", Escuela: " + nombreEscuela + ", CUE-Anexo: " + cueAnexo;
+@Override
+    public String getCbu() {
+        return cbu;
     }
+@Override
+    public void setCbu(String cbu) {
+        this.cbu = cbu;
+    }
+@Override
+    public String getTelefono() {
+        return telefono;
+    }
+@Override
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+@Override
+    public String getCorreo() {
+        return correo;
+    }
+@Override
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public remuneradoEnum getRemunerado() {
+        return remunerado;
+    }
+
+    public void setRemunerado(remuneradoEnum remunerado) {
+        this.remunerado = remunerado;
+    }
+
+@Override
+public String toString() {
+    return super.toString()
+           + " | CUIL: " + getCuil()
+           + " | Nombre: " + getNombre() + " " + getApellido()
+           + " | CBU: " + cbu
+           + " | Teléfono: " + telefono
+           + " | Correo: " + correo
+           + " | Remunerado: " + remunerado  // acá esperás 'SI', 'NO' o 'REVISAR'
+           + " | Tipo Aplicador: " + tipoAplicador
+           + " | Sección: " + seccion
+           + " | Turno: " + turno
+           + " | Tipo Sección: " + tipo
+           + " | Cue Anexo: " + cueAnexo
+           + " | Nombre Escuela: " + nombreEscuela
+           + " | Dependencia: " + dependencia
+           + " | Sector: " + sector
+           + " | Departamento: " + departamento;
+}
+
 }
 

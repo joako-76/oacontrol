@@ -124,33 +124,40 @@ public class MenuPrincipal {
         }
     }
 
-    private static void mostrarAplicador(AplicadorAsignado a) {
-        System.out.println("CUIL: " + a.getCuil());
-        System.out.println("Nombre: " + a.getNombre());
-        System.out.println("Apellido: " + a.getApellido());
-        System.out.println("Tipo Aplicador: " + a.getTipoAplicador());
-        System.out.println("Sección: " + a.getSeccion());
-        System.out.println("Turno: " + a.getTurno());
-        System.out.println("Tipo Sección: " + a.getTipoSeccion());
-        System.out.println("Cue Anexo: " + a.getCueAnexo());
-        System.out.println("Nombre Escuela: " + a.getNombreEscuela());
-        System.out.println("Dependencia: " + a.getDependencia());
-        System.out.println("Sector: " + a.getSector());
-        System.out.println("Departamento: " + a.getDepartamento());
-    }
+ private static void mostrarAplicador(AplicadorAsignado a) {
+    System.out.println("Nombre: " + a.getNombre());
+    System.out.println("Apellido: " + a.getApellido());
+    System.out.println("CUIL: " + a.getCuil());
+    System.out.println("CBU: " + a.getCbu());
+    System.out.println("Teléfono: " + a.getTelefono());
+    System.out.println("Correo: " + a.getCorreo());
+    System.out.println("Remunerado: " + a.getRemunerado()); // <- ESTA LÍNEA AGREGA LA MAGIA
+    System.out.println("Tipo Aplicador: " + a.getTipoAplicador());
+    System.out.println("Sección: " + a.getSeccion());
+    System.out.println("Turno: " + a.getTurno());
+    System.out.println("Tipo Sección: " + a.getTipoSeccion());
+    System.out.println("Cue Anexo: " + a.getCueAnexo());
+    System.out.println("Nombre Escuela: " + a.getNombreEscuela());
+    System.out.println("Dependencia: " + a.getDependencia());
+    System.out.println("Sector: " + a.getSector());
+    System.out.println("Departamento: " + a.getDepartamento());
+}
+
 
     private static void mostrarPersonaDetalleAsignacion(PersonaDetalleAsignacion p) {
         System.out.println("CUIL: " + p.getCuil());
         System.out.println("Nombre: " + p.getNombre());
         System.out.println("Apellido: " + p.getApellido());
+        System.out.println("CBU: " + p.getCbu());
         System.out.println("Rol: " + p.getRol()); // Único rol según la vista
+        System.out.println("Remunerado: " + p.getRemunerado());
         System.out.println("Tipo Aplicador: " + p.getTipoAplicador());
         System.out.println("Lugar Donde Se Desempeña (CUE Anexo): " + p.getLugarDondeSeDesempena());
         System.out.println("Nombre Donde Se Desempeña: " + p.getNombreDondeSeDesempena());
         System.out.println("Lugar Donde Aplica (CUE Anexo): " + p.getLugarDondeAplica());
         System.out.println("Nombre Donde Aplica: " + p.getNombreDondeAplica());
         System.out.println("Contacto: " + p.getContacto());
-        System.out.println("CBU: " + p.getCbu());
+        
     }
 
     private static void mostrarVeedorAsignado(VeedorAsignado v) {

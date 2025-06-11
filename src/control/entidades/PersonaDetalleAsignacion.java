@@ -4,6 +4,8 @@
  */
 package control.entidades;
 
+import control.enums.remuneradoEnum;
+
 public class PersonaDetalleAsignacion extends Persona {
 
     private String cbu;
@@ -14,6 +16,10 @@ public class PersonaDetalleAsignacion extends Persona {
     private String nombreDondeAplica;
     private String rol;
     private String tipoAplicador;
+    private remuneradoEnum remunerado;
+    
+     public PersonaDetalleAsignacion(){
+     }
 
     public PersonaDetalleAsignacion(
             String cuil,
@@ -21,6 +27,7 @@ public class PersonaDetalleAsignacion extends Persona {
             String nombre,
             String apellido,
             String contacto,
+            remuneradoEnum remunerado,
             String lugarDondeSeDesempena,
             String nombreDondeSeDesempena,
             String lugarDondeAplica,
@@ -34,6 +41,7 @@ public class PersonaDetalleAsignacion extends Persona {
 
         this.cbu = cbu;
         this.contacto = contacto;
+        this.remunerado = remunerado;
         this.lugarDondeSeDesempena = lugarDondeSeDesempena;
         this.nombreDondeSeDesempena = nombreDondeSeDesempena;
         this.lugarDondeAplica = lugarDondeAplica;
@@ -59,11 +67,11 @@ public class PersonaDetalleAsignacion extends Persona {
     public void setContacto(String contacto) {
         this.contacto = contacto;
     }
-
+@Override
     public String getLugarDondeSeDesempena() {
         return lugarDondeSeDesempena;
     }
-
+@Override
     public void setLugarDondeSeDesempena(String lugarDondeSeDesempena) {
         this.lugarDondeSeDesempena = lugarDondeSeDesempena;
     }
@@ -75,11 +83,11 @@ public class PersonaDetalleAsignacion extends Persona {
     public void setNombreDondeSeDesempena(String nombreDondeSeDesempena) {
         this.nombreDondeSeDesempena = nombreDondeSeDesempena;
     }
-
+@Override
     public String getLugarDondeAplica() {
         return lugarDondeAplica;
     }
-
+@Override
     public void setLugarDondeAplica(String lugarDondeAplica) {
         this.lugarDondeAplica = lugarDondeAplica;
     }
@@ -91,11 +99,11 @@ public class PersonaDetalleAsignacion extends Persona {
     public void setNombreDondeAplica(String nombreDondeAplica) {
         this.nombreDondeAplica = nombreDondeAplica;
     }
-
+@Override
     public String getRol() {
         return rol;
     }
-
+@Override
     public void setRol(String rol) {
         this.rol = rol;
     }
@@ -108,6 +116,14 @@ public class PersonaDetalleAsignacion extends Persona {
         this.tipoAplicador = tipoAplicador;
     }
 
+    public remuneradoEnum getRemunerado() {
+        return remunerado;
+    }
+
+    public void setRemunerado(remuneradoEnum remunerado) {
+        this.remunerado = remunerado;
+    }
+
     @Override
     public String toString() {
         return "PersonaDetalleAsignacion{" +
@@ -116,6 +132,7 @@ public class PersonaDetalleAsignacion extends Persona {
                 ", apellido='" + getApellido() + '\'' +
                 ", cbu='" + cbu + '\'' +
                 ", contacto='" + contacto + '\'' +
+                ", remunerado='" + remunerado + '\'' +
                 ", lugarDondeSeDesempena='" + lugarDondeSeDesempena + '\'' +
                 ", nombreDondeSeDesempena='" + nombreDondeSeDesempena + '\'' +
                 ", lugarDondeAplica='" + lugarDondeAplica + '\'' +
@@ -125,4 +142,3 @@ public class PersonaDetalleAsignacion extends Persona {
                 '}';
     }
 }
-
