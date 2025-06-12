@@ -110,5 +110,70 @@ public class PersonaDetalleAsignacionDAO {
         return remuneradoEnum.REVISAR;
     }
 }
+    public List<PersonaDetalleAsignacion> obtenerPorApellido(String apellido) {
+    List<PersonaDetalleAsignacion> lista = new ArrayList<>();
+    String sql = "SELECT * FROM vista_persona_detalle_asignacion WHERE LOWER(apellido) LIKE LOWER(?)";
+
+    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        ps.setString(1, "%" + apellido + "%");
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                lista.add(new PersonaDetalleAsignacion(
+                        rs.getString("cuil"),
+                        rs.getString("cbu"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("contacto"),
+                        parseRemunerado(rs.getString("remunerado")),
+                        rs.getString("lugarDondeSeDesempena"),
+                        rs.getString("nombreDondeSeDesempena"),
+                        rs.getString("lugarDondeAplica"),
+                        rs.getString("nombreDondeAplica"),
+                        rs.getString("rol"),
+                        rs.getString("tipoAplicador")
+                ));
+            }
+        }
+    } catch (SQLException e) {
+        logger.log(Level.SEVERE, "Error al obtener personas por apellido: " + apellido, e);
+    }
+
+    return lista;
+}
+
+public List<PersonaDetalleAsignacion> obtenerPorApellidoNombre(String nombre, String apellido) {
+    List<PersonaDetalleAsignacion> lista = new ArrayList<>();
+    String sql = "SELECT * FROM vista_persona_detalle_asignacion " +
+                 "WHERE LOWER(nombre) LIKE LOWER(?) AND LOWER(apellido) LIKE LOWER(?)";
+
+    try (PreparedStatement ps = conexion.prepareStatement(sql)) {
+        ps.setString(1, "%" + nombre + "%");
+        ps.setString(2, "%" + apellido + "%");
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                lista.add(new PersonaDetalleAsignacion(
+                        rs.getString("cuil"),
+                        rs.getString("cbu"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getString("contacto"),
+                        parseRemunerado(rs.getString("remunerado")),
+                        rs.getString("lugarDondeSeDesempena"),
+                        rs.getString("nombreDondeSeDesempena"),
+                        rs.getString("lugarDondeAplica"),
+                        rs.getString("nombreDondeAplica"),
+                        rs.getString("rol"),
+                        rs.getString("tipoAplicador")
+                ));
+            }
+        }
+    } catch (SQLException e) {
+        logger.log(Level.SEVERE, "Error al obtener personas por nombre y apellido: " + nombre + " " + apellido, e);
+    }
+
+    return lista;
+}
+
+
 
 }
