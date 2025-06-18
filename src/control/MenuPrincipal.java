@@ -188,14 +188,18 @@ public class MenuPrincipal {
         System.out.println("Contacto: " + p.getContacto());
     }
 
-    private static void mostrarVeedorAsignado(VeedorAsignado v) {
-        System.out.println("CUIL: " + v.getCuil());
-        System.out.println("Nombre: " + v.getNombre());
-        System.out.println("Apellido: " + v.getApellido());
-        System.out.println("Cue Anexo: " + v.getCueAnexo());
-        System.out.println("Nombre Escuela: " + v.getNombreEscuela());
-        System.out.println("Dependencia: " + v.getDependencia());
-        System.out.println("Sector: " + v.getSector());
-        System.out.println("Departamento: " + v.getDepartamento());
-    }
+private static void mostrarVeedorAsignado(VeedorAsignado v) {
+    System.out.println("CUIL: " + v.getCuil());
+    System.out.println("Nombre: " + v.getNombre());
+    System.out.println("Apellido: " + v.getApellido());
+    System.out.println("CBU: " + v.getCbu());
+    System.out.println("Se desempeña en (CUE Anexo): " + v.getEsDe());
+    System.out.println("Nombre donde se desempeña: " + v.getNombreLocalizacionTrabajo());
+    System.out.println("Contacto: " + v.getContacto());
+    System.out.println("Correo: " + v.getCorreo());
+    System.out.println("Cue Anexo donde aplica: " + v.getCueAnexo());
+    System.out.println("Nombre de la escuela aplicada: " + v.getNombreLocalizacionAplicada());
+    System.out.println("Dependencia: " + v.getDependencia());
+    System.out.println("Sector: " + v.getSector());
+}
 }
